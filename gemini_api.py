@@ -3,6 +3,7 @@ import google.generativeai as genai  # 제미나이 모델을 python에서 쓸 �
 from dotenv import (
     load_dotenv,
 )  # 파일 안에 적힌 환경 변수들을 프로그램 실행 시 자동으로 불러오는 역할
+from context_handler import get_context
 
 # 환경 변수 로드
 load_dotenv()
@@ -31,7 +32,7 @@ else:
 #========================================================================================================
 
 def ask_gemini(
-    user_input: str, context: str = None, conversation_history: list = None
+    user_input: str, context: str = None, conversation_history: list = None, context_file: str = None
 ) -> str:
     try:
         # 모델 초기화
@@ -39,6 +40,13 @@ def ask_gemini(
 
         # 프롬프트 구성
         prompt = user_input
+
+        # 컨텍스트 처리: context 파라미터가 없으면 파일에서 로드
+        if context is None and context_file is not None:
+            context = get_context(context_file)
+        elif context is None:
+            # 기본 context 파일 사용
+            context = get_context()
 
         # 컨텍스트가 있으면 추가
         if context:
