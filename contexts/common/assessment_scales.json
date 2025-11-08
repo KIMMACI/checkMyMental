@@ -1,0 +1,24 @@
+{
+  "description": "정신건강 평가 척도",
+  "scales": {
+    "phq9": {
+      "name": "PHQ-9 (Patient Health Questionnaire-9)",
+      "purpose": "우울증 선별 및 심각도 평가",
+      "items": 9,
+      "scoring": "0-27점"
+    },
+    "gad7": {
+      "name": "GAD-7 (Generalized Anxiety Disorder-7)",
+      "purpose": "불안장애 선별 및 심각도 평가",
+      "items": 7,
+      "scoring": "0-21점"
+    },
+    "pcl5": {
+      "name": "PCL-5 (PTSD Checklist-5)",
+      "purpose": "외상후 스트레스 장애 평가",
+      "items": 20,
+      "scoring": "0-80점"
+    }
+  }
+}
+

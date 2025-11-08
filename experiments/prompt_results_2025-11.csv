@@ -1,0 +1,3 @@
+date,stage,prompt_version,user_input,response,context_used,evaluation_score,notes
+2025-11-01,stage1,v1.0,샘플 입력,샘플 응답,context_stage1_intake.json,0,초기 테스트
+

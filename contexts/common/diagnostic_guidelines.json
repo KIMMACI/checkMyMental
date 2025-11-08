@@ -1,0 +1,19 @@
+{
+  "description": "정신건강 진단 가이드라인",
+  "guidelines": {
+    "dsm5": {
+      "description": "DSM-5 진단 기준",
+      "source": "American Psychiatric Association"
+    },
+    "icd11": {
+      "description": "ICD-11 분류 기준",
+      "source": "WHO"
+    }
+  },
+  "principles": [
+    "정확한 진단을 위한 충분한 정보 수집",
+    "다각도 평가 및 검증",
+    "임상적 판단과 증거 기반 접근의 균형"
+  ]
+}
+

@@ -34,7 +34,7 @@ def process_user_input(user_input):
     history = get_conversation_history(exclude_last=True)
     
     # Gemini API 호출
-    response = ask_gemini(user_input, conversation_history=history)
+    response = ask_gemini(user_input, conversation_history=history, context_file="stress_guide.md")
     
     # AI 응답 추가
     add_assistant_message(response)

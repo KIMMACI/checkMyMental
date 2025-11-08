@@ -21,10 +21,6 @@ def load_context_from_file(filename: str) -> str:
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read().strip()
-            print(f"[Context Handler] 파일 읽기 성공: {filename}")
-            print(f"[Context Handler] 읽어온 내용:\n{'-' * 50}")
-            print(content)
-            print(f"{'-' * 50}\n")
             return content
     except Exception as e:
         print(f"[Context Handler] Context 파일 읽기 오류 ({filename}): {e}")
@@ -49,11 +45,8 @@ def save_context_to_file(filename: str, content: str) -> bool:
 #지정된 이름의 파일(.txt나 .md)에서 context를 읽어서 문자열로 반환
 def get_context(context_name: str = None) -> str:
     if context_name is None:
-        context_name = "stress_guide.md"
-    
-    print(f"[Context Handler] get_context() 호출됨 - 파일명: {context_name}")
+        context_name = "default_context.md"
     context = load_context_from_file(context_name)
-    print(f"[Context Handler] 최종 반환할 context 길이: {len(context)} 글자\n")
     return context
 
 

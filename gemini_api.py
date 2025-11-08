@@ -24,8 +24,9 @@ else:
 
 # Args:
 #     user_input: 사용자 입력 메시지
-#     context: 추가 컨텍스트 (RAG 검색 결과 등)
+#     context : 추가 컨텍스트 (RAG 검색 결과 등)
 #     conversation_history: 대화 히스토리 리스트
+#     context_file: 컨텍스트 파일 이름
 
 # Returns:
 #     Gemini의 응답 텍스트
@@ -50,12 +51,11 @@ def ask_gemini(
 
         # 컨텍스트가 있으면 추가
         if context:
-            prompt = f"""다음 정보를 참고하여 사용자의 질문에 답변해주세요.
-참고 정보:
-{context}
-
-사용자 질문: {user_input}
-"""
+            prompt = f"""
+            다음 정보를 참고하여 사용자의 질문에 답변해주세요.
+            {context}
+            사용자 질문: {user_input}
+            """
 
         # 대화 히스토리가 있으면 포함
         if conversation_history:
@@ -66,12 +66,14 @@ def ask_gemini(
                     for msg in conversation_history[-5:]  # 최근 5개만 포함
                 ]
             )
-            prompt = f"""이전 대화:      
-{history_text}
+            prompt = f"""
+            이전 대화:      
+            {history_text}
 
-현재 사용자 질문: {user_input}
-"""
+            현재 사용자 질문: {user_input}
+            """
 
+        prompt = "영어로 Kosaraju 알고리즘에 대해 알려줘."
         # API 호출
         response = model.generate_content(prompt)
 
