@@ -41,8 +41,9 @@ def get_stage_guideline_message(stage: int) -> str:
     what_to_do_list = "\n".join([f"- {item}" for item in guideline['what_to_do']])
     tips_list = "\n".join([f"- {item}" for item in guideline['tips']])
     
-    # Assistant 메시지 형식으로 포맷팅 (각 섹션 사이에 빈 줄 추가)
-    message = f"""**{guideline['title']}**
+    # Assistant 메시지 형식으로 포맷팅 (title은 HTML로 처리하여 크기 조정)
+    # 이모지와 함께 제대로 표시되도록 HTML 사용
+    message = f"""<h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.3em;">{guideline['title']}</h3>
 
 {guideline['description']}
 
@@ -73,7 +74,9 @@ def init_chat_history():
         if guideline_message:
             st.session_state.messages.append({
                 "role": "assistant",
-                "content": guideline_message
+                "content": guideline_message,
+                "is_guideline": True,  # 가이드라인 메시지 플래그
+                "stage": current_stage  # 단계 정보 저장
             })
             st.session_state.guideline_added = True
 
@@ -183,7 +186,13 @@ def process_user_input(user_input):
         next_stage = stage_handler.get_current_stage()
         guideline_message = get_stage_guideline_message(next_stage)
         if guideline_message:
-            add_assistant_message(guideline_message)
+            # 가이드라인 메시지로 표시하기 위해 플래그 추가
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": guideline_message,
+                "is_guideline": True,  # 가이드라인 메시지 플래그
+                "stage": next_stage  # 단계 정보 저장
+            })
     
     return cleaned_response
 
