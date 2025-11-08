@@ -7,6 +7,7 @@ from frontend.ui_components import (
     setup_page_config,
     render_sidebar,
     render_main_header,
+    render_stage_guideline,
     render_chat_messages,
     render_user_input,
 )
@@ -26,6 +27,9 @@ render_main_header()
 
 # 채팅 히스토리 초기화
 init_chat_history()
+
+# 단계별 가이드라인 표시
+render_stage_guideline()
 
 # 채팅 메시지 표시
 render_chat_messages(st.session_state.messages)
