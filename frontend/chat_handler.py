@@ -67,17 +67,27 @@ def init_chat_history():
     if "stage_handler" not in st.session_state:
         st.session_state.stage_handler = StageHandler()
     
-    # 초기 가이드라인 메시지 추가 (첫 실행 시에만)
+    # 초기 가이드라인 메시지 및 인사 메시지 추가 (첫 실행 시에만)
     if "guideline_added" not in st.session_state:
         current_stage = st.session_state.stage_handler.get_current_stage()
         guideline_message = get_stage_guideline_message(current_stage)
         if guideline_message:
+            # 가이드라인 메시지 추가
             st.session_state.messages.append({
                 "role": "assistant",
                 "content": guideline_message,
                 "is_guideline": True,  # 가이드라인 메시지 플래그
                 "stage": current_stage  # 단계 정보 저장
             })
+            
+            # 인사 메시지 추가
+            greeting_message = "안녕하세요! 저는 AI 정신건강 상담 도우미입니다. 오늘 어떤 도움이 필요하신가요? 편하게 말씀해주세요."
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": greeting_message,
+                "is_guideline": False  # 일반 메시지
+            })
+            
             st.session_state.guideline_added = True
 
 
