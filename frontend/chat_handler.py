@@ -64,9 +64,6 @@ def process_user_input(user_input):
                 "stage1_summary": stage1_data.get("summary_report", "") if stage1_data else "",
                 "stage3_validation": stage3_data.get("validation_result", "") if stage3_data else ""
             }
-            # print(f"[Stage 4] 이전 단계 데이터:")
-            # print(f"  - Stage 1 Summary 길이: {len(previous_stage_data['stage1_summary'])}자")
-            # print(f"  - Stage 3 Validation 길이: {len(previous_stage_data['stage3_validation'])}자")
         else:
             # 다른 단계는 바로 이전 단계의 데이터만 필요
             previous_stage_data = stage_handler.get_stage_output(current_stage - 1)

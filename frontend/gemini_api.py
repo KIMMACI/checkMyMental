@@ -171,7 +171,6 @@ Assistant:"""
         # API 호출
         response = model.generate_content(full_prompt)
         
-        
         return response.text
 
     except Exception as e:
